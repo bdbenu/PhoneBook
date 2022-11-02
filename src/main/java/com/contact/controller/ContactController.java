@@ -1,5 +1,7 @@
 package com.contact.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +36,28 @@ public class ContactController {
 			model.addAttribute(AppConstant.CREATE_CONTACT_FAILED, contactCreate);
 		}
 
+		return "redirect:registersucess";
+	}
+
+	@GetMapping("/contacts")
+	public String contacts(Model model) {
+		List<Contact> contacts = contactService.contacts();
+		if (contacts != null) {
+			model.addAttribute("contacts", contacts);
+		}
+		return "contact_list";
+	}
+
+	@GetMapping("/registersucess")
+	public String registerSuccess(Model model) {
+		Contact contact = new Contact();
+		model.addAttribute("contact", contact);
+		return "home";
+
+	}
+	
+	public String updateContact() {
+		
 		return "home";
 	}
 

@@ -32,6 +32,11 @@ public class ContactServiceImpl implements ContactService {
 		Optional<Contact> findById = contactRepositary.findById(contId);
 		if(findById.isPresent()) {
 			Contact contact = findById.get();
+			contact.setContName(contact.getContName());
+			contact.setContMobile(contact.getContMobile());
+			contact.setContEmail(contact.getContEmail());
+			contact.setGender(contact.getGender());
+			contact.setAddress(contact.getAddress());
 			return contact;
 		}
 		return null;
